@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siqi Wang Thesis Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            text-align: center;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .interactive-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 500px;
+            height: 500px;
+            font-size: 18px;
+            color: white;
+            background: linear-gradient(45deg, #ff7eb3, #ff758c);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        .interactive-button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #ff589b, #ff3d73);
+        }
+        .content {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+.gallery {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .gallery img {
+            width: 150px;
+            height: auto;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+        .bookshelf {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .book-item {
+            padding: 10px;
+            margin: 10px 0;
+            background: #f8f8f8;
+            border-left: 5px solid #ff758c;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .book-item:hover {
+            background: #ffebf0;
+        }
+
+
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+            padding: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: #333;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 10px 20px;
+            background: #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease-in-out;
+            cursor: pointer;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        .timeline-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .popular-tags {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .tag {
+            background: #ff758c;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Post-Globalization and Digital Spaces</h1>
+        <p>Siqi Wang Thesis Project</p>
+    </header>
+    
+    <div class="container">
+        <div class="button-container">
+            <a href="https://www.notion.so/Thesis-Writing-Spring-2025-160a0e7b21fd80858fb5dfcc673042bc" class="interactive-button" target="_blank">The New Art World</a>
+            <a href="https://Ifthen.studio" class="interactive-button" target="_blank">Google introduction Slide</a>
+        </div>
+        
+        <div class="content">
+            <h2>Research Background </h2>
+            <p>This research examines the implicit power imbalances in cross-cultural communication, particularly the interactions between Western and Chinese cultures in a globalized context. Using overseas Chinese communities as a focal point, it investigates how cultural communication platforms (e.g., REDnote and TikTok) reveal racial privilege, linguistic power, and identity dynamics. By analyzing user behavior and interactions across diverse cultural backgrounds, the study explores how design can act as a tool to balance privilege, promote understanding, and encourage inclusivity.</p>
+        </div>
+          <div class="popular-tags">
+            <h2>Popular Tag</h2>
+            <div class="tag-list">
+                <span class="tag">#cat tax</span>
+                <span class="tag">#tiktokrefugee</span>
+                <span class="tag">#TikTok ban</span>
+                <span class="tag">#foreigners flooding in</span>
+                <span class="tag">#foreigners in China</span>
+                <span class="tag">#cultural differences between China and the West</span>
+                <span class="tag">#interesting foreigners</span>
+                <span class="tag">#life abroad</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2> Timeline Regarding </h2>
+            <div class="timeline">
+                <div class="timeline-item" onclick="editContent(this)">January 10, 2025: The U.S. Supreme Court ruled that TikTok would be banned in the U.S</div>
+                <div class="timeline-item" onclick="editContent(this)">January 14, 2025: As TikTok faced a potential ban, Xiaohongshu (also known as RedNote) surged to the top of both the Apple App Store and Google Play Store in the U.S</div>
+                <div class="timeline-item" onclick="editContent(this)">The hashtag #TikTokRefugee had already garnered over 78 million views and 2 million discussions on Xiaohongshu</div>
+                <div class="timeline-item" onclick="editContent(this)">TikTok was officially banned in the U.S. unless ByteDance completed a sale of its American operations</div>
+            </div>
+        </div>
+
+        <div class="content">
+        <div class="gallery">
+            <h2>Gallery</h2>
+            <p>点击图片查看完整推文截图</p>
+            <a href="https://example.com/tweet1" target="_blank"><img src="https://example.com/tweet1.jpg" alt="推文截图1"></a>
+            <a href="https://example.com/tweet2" target="_blank"><img src="https://example.com/tweet2.jpg" alt="推文截图2"></a>
+            <a href="https://example.com/tweet3" target="_blank"><img src="https://example.com/tweet3.jpg" alt="推文截图3"></a>
+        </div>
+        
+        <div class="bookshelf">
+            <h2>Interesting News</h2>
+            <p>点击标题查看完整新闻</p>
+            <div class="book-item" onclick="window.open('https://cn.nytimes.com/technology/20250121/tiktok-ban-rednote-xiaohongshu-adapts/', '_blank')">"American 'TikTok Refugees' Become 'Permanent Residents': How Xiaohongshu Responds</div>
+            <div class="book-item" onclick="window.open('https://www.thepaper.cn/newsDetail_forward_13447571', '_blank')">In the era of digital media, the transformation and changes in nationalism.</div>
+            <div class="book-item" onclick="window.open('https://www.lifeweek.com.cn/article/240989', '_blank')">A historic celebration between Chinese and American netizens: How long can Xiaohongshu's massive traffic last?</div>
+        </div>
+        
+      
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const timelineItems = document.querySelectorAll(".timeline-item");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            timelineItems.forEach(item => observer.observe(item));
+        });
+
+        function editContent(element) {
+            let newText = prompt("修改时间线内容:", element.innerText);
+            if (newText) {
+                element.innerText = newText;
+            }
+        }
+    </script>
+</body>
+</html>
