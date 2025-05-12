@@ -1,0 +1,168 @@
+
+/*--------General---------------*/
+body {
+      margin: 0;
+      height: 100vh;
+      background-color: #f0f0f0;
+      overflow: hidden;
+      position: relative;
+    }
+
+/*-----------Bottom icon---------------*/
+    .bottom-button {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #87ffff;
+  color: #333;
+  font-size: 18px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  z-index: 10;
+  font-weight: bold;
+}
+
+.bottom-button:hover {
+  background-color: #ef455c; 
+  color: #fff;
+}
+
+
+
+
+/*--------Preload---------------*/
+
+    #preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 999999;
+}
+
+#status {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  text-align: center;
+}
+
+#status img {
+  max-width: 100%;
+  max-height: 100%;
+  width: 150px;  
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+/*---------Background---------------*/
+#home {
+  background: url('images/hero1.jpeg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-width: 100%;
+  min-height: 100%;
+  height: 100vh;
+  width: 100%;
+  display: block;
+}
+
+
+/*---------icon---------------*/
+    .icon {
+      position: absolute;
+      width: 100px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      animation: float 5s infinite ease-in-out;
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* icon position */
+    #icon1  { top: 80px;  left: 10vw; }
+#icon2  { top: 180px; left: 40vw; }
+#icon3  { top: 250px; left: 70vw; }
+#icon4  { top: 520px; left: 75vw; }
+#icon5  { top: 360px; left: 55vw; }
+
+#icon6 { top: 400px; left: 5vw; }
+#icon7 { top: 520px; left: 15vw; }
+#icon8  { top: 20px;  left: 20vw; }
+#icon9 { top: 320px; left: 30vw; }
+#icon10 { top: 20px; left: 85vw; }
+#icon11 { top: 600px; left: 60vw; }
+
+/*---------pop up window---------------*/
+
+    .popup {
+  position: absolute;
+  width: 40vh; /* 固定宽度为视口高度的 40% */
+  max-height: 30vh;
+  background-image: url('images/background.png'); /* 替换为你的背景图片 */
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 10px;
+  display: none;
+  z-index: 10;
+  overflow: auto; /* 超出内容仍可滚动（建议保留） */
+  box-sizing: border-box;
+  resize: none; /* 禁止用户拖动弹窗改变大小 */
+}
+
+.popup-content {
+  padding-top: 30px;
+}
+
+.popup-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px; /* 与 padding-top 一致 */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  object-fit: cover;
+  z-index: 15;
+  pointer-events: none; /* 允许点击透过这张图 */
+}
+
+
+.popup[contenteditable] {
+  outline: none;
+  color: white;
+  font-size: 16px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  z-index: 100;
+}
+
