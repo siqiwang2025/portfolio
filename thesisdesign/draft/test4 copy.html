@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+    <title>Siqi Wang Thesis Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        .intro {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    color: #000000;
+    }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* 宽度撑满整个屏幕 */
+    height: 60px; /* 固定高度 */
+    background-color: black; /* 背景色 */
+    display: flex;
+    justify-content: center; /* 让菜单项居中 */
+    align-items: center;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1); /* 添加底部阴影 */
+    z-index: 1000; /* 确保导航栏始终在最上层 */
+}
+
+.nav a {
+    margin: 0 30px;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 15px 20px;
+    transition: 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
+.nav a:hover {
+    background-color: #12c8b7; /* 悬停时背景变化 */
+    color: black;
+    transform: scale(1.05);
+}
+
+
+         header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .interactive-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 500px;
+            height: 500px;
+            font-size: 18px;
+            color: white;
+            background: linear-gradient(45deg, #fe2d56, #fb5a79);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        .interactive-button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #ff589b, #ff3d73);
+        }
+        .content {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #00f2ea;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: url('https://source.unsplash.com/1600x900/?technology,abstract') no-repeat center center/cover;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .gallery {
+
+    position: relative;
+}
+
+/* 让 Masonry 的子元素（图片）正确排列 */
+.gallery a {
+    display: block;
+    width: 150px;
+    margin: 5px;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+
+
+        .book-item {
+            color: #000000;
+            padding: 10px;
+            margin: 10px 0;
+            background: #22f7e9;
+            border-left: 5px solid #000000;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .book-item:hover {
+            background: #ffebf0;
+        }
+
+
+
+        .timeline {
+    position: relative;
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 15px 30px;
+    background: #fe2e55;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-in-out;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 118, 136, 0.2);
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    transform: translateX(-20px);
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    transform: translateX(20px);
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease-in-out;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: 0;
+}
+
+.timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.timeline-content h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.timeline-content p {
+    font-size: 1rem;
+    margin: 0;
+    opacity: 1;
+}
+
+.timeline-item.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.timeline-item:hover {
+    background: rgba(255, 118, 136, 1);
+    transform: scale(1.05);
+}
+
+/* 适配小屏幕 */
+@media screen and (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        left: 0 !important;
+        text-align: left;
+        padding-left: 50px;
+    }
+
+    .timeline-dot {
+        left: 20px !important;
+    }
+}
+
+
+
+        .popular-tags {
+    background: linear-gradient(135deg, #1e1e1e, #292929); /* 渐变背景 */
+    padding: 25px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+}
+
+.popular-tags h2 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.tag {
+    background: linear-gradient(135deg, #22f7e9, #12c8b7);
+    color: #000;
+    padding: 10px 16px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(34, 247, 233, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 标签悬浮动画 */
+.tag:hover {
+    transform: translateY(-3px) scale(1.1);
+    background: linear-gradient(135deg, #12c8b7, #0aaea1);
+    box-shadow: 0 6px 15px rgba(34, 247, 233, 0.5);
+}
+
+/* 标签入场动画 */
+.tag {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInTag 0.6s ease-out forwards;
+}
+
+/* 让标签依次出现 */
+@keyframes fadeInTag {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 让不同的标签延迟出现 */
+.tag:nth-child(1) { animation-delay: 0.1s; }
+.tag:nth-child(2) { animation-delay: 0.2s; }
+.tag:nth-child(3) { animation-delay: 0.3s; }
+.tag:nth-child(4) { animation-delay: 0.4s; }
+.tag:nth-child(5) { animation-delay: 0.5s; }
+.tag:nth-child(6) { animation-delay: 0.6s; }
+.tag:nth-child(7) { animation-delay: 0.7s; }
+.tag:nth-child(8) { animation-delay: 0.8s; }
+
+/* 适配小屏幕 */
+@media screen and (max-width: 768px) {
+    .tag {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        </header>
+        <section class="hero">
+            <h1>Chronicle of Digital Globalization</h1>
+            <p>Siqi Wang Thesis Project</p>
+        </section></header>
+
+            <nav class="nav">
+        <a href="#portfolio">Behance</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact">Resume</a>
+    </nav>
+    
+    <div class="container">
+        <div class="button-container">
+            <a href="https://www.notion.so/Thesis-Writing-Spring-2025-160a0e7b21fd80858fb5dfcc673042bc" class="interactive-button" target="_blank">The New Art World</a>
+            <a href="https://Ifthen.studio" class="interactive-button" target="_blank">Thesis Book #Collision</a>
+        </div>
+        
+        <div class="content">
+            <h2>Thesis Statement </h2>
+            <p>In selecting my thesis topic—documenting and analyzing the interactions and conflicts between China and the U.S. in digital spaces—I aim to explore a crucial moment in technological globalization. As an international student in the U.S. who actively engages with social media, I have observed a significant shift in digital power dynamics. The U.S. has increasingly recognized and reacted to China’s technological advancements, while Chinese tech innovators have demonstrated a growing sense of competition and resistance.
+                <br>
+Recent events illustrate this dynamic transformation. The TikTok ban has forced U.S. users to explore alternative platforms, leading to a surge in engagement on Xiaohongshu (RedBook), a platform traditionally centered on Chinese users. Similarly, DeepSeek's emergence as an open-source language model has positioned it as a competitor to OpenAI’s ChatGPT, directly challenging U.S. dominance in AI development. Another striking example is how Chinese audiences have organized collective actions to boost a domestic film’s ranking in global box office history, disrupting an industry long dominated by Hollywood.
+<br>
+These occurrences signal a new era in digital geopolitics, where nationalism, globalization, and digital platform dynamics intersect to shape hybrid virtual spaces. By documenting these phenomena, I seek to capture the evolving relationship between China and the U.S. through the lens of digital culture. Given the rapid nature of these developments, I believe my thesis will serve not only as an academic exploration but also as a real-time archive of a pivotal shift in digital and cultural exchange.
+
+        </div>
+
+       <div class="content">
+          <div class="popular-tags">
+    <h2>Popular Tags</h2>
+    <div class="tag-list">
+        <span class="tag">#cat tax</span>
+        <span class="tag">#tiktokrefugee</span>
+        <span class="tag">#TikTok ban</span>
+        <span class="tag">#foreigners flooding in</span>
+        <span class="tag">#foreigners in China</span>
+        <span class="tag">#cultural differences between China and the West</span>
+        <span class="tag">#interesting foreigners</span>
+        <span class="tag">#life abroad</span>
+        <span class="tag">#Deepseek</span>
+    </div>
+</div></div>
+
+
+
+      <div class="content">
+            <h2> Timeline Regarding </h2>
+            <div class="timeline">
+                <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>March 18, 2024</h3>
+            <p>A U.S. lawmaker stated that a potential forced sale of TikTok could financially benefit ByteDance’s investors, indicating growing pressure on the Chinese-owned platform</p>
+        </div>
+    </div>
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>December 15, 2024</h3>
+            <p>The U.S. Department of Commerce announced an expansion of chip export restrictions to China</p>
+        </div>
+    </div>
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 10, 2025</h3>
+            <p>DeepSeek officially released its large language model</p>
+        </div>
+    </div>
+
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 10, 2025</h3>
+            <p>The U.S. Supreme Court ruled that TikTok would be banned in the U.S</p>
+        </div>
+    </div>
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 14, 2025</h3>
+            <p>As TikTok faced a potential ban, Xiaohongshu (RedNote) surged to the top of both the Apple App Store and Google Play Store in the U.S</p>
+        </div>
+    </div>
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 16, 2025</h3>
+            <p>The hashtag #TikTokRefugee had already garnered over 78 million views and 2 million discussions on Xiaohongshu</p>
+        </div>
+    </div>
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 19, 2025</h3>
+            <p>A nationwide ban on TikTok took effect, formally barring internet service providers and app stores from offering the ultra-popular social media platform.</p>
+        </div>
+    </div>
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 27, 2025</h3>
+            <p>DeepSeek became the most downloaded app on Apple's U.S. App Store by January 27</p>
+        </div>
+    </div>
+
+<div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>February 14, 2025</h3>
+            <p>TikTok, which was not available for download in the U.S. for over three weeks, returns to the Apple App Store and the Google Play store for Android phones</p>
+        </div></div>
+
+        <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>March 1, 2025</h3>
+            <p>The global box office revenue of the animated film *Nezha2: The Devil Child Roars at the Sea* has surpassed 1.94 billion yuan, exceeding *Spider-Man: No Way Home* and ranking 7th on the all-time global box office chart.</p>
+        </div></div>
+
+        <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+              <h3>March 5, 2025</h3>
+            <p>The Chinese chain brand Mixue Bingcheng, which specializes in selling low-cost tea drinks and ice cream, has surpassed McDonald’s in the number of stores worldwide.</p>
+        </div></div>
+
+
+
+    </div>
+
+
+
+</div></div>
+
+        <div class="content">
+
+            <h2>Gallery</h2>
+            <p>Click the image to view the full tweet screenshot.</p>
+             <div class="gallery">
+            <a href="https://d.newsweek.com/en/full/2564295/tiktok-content-creators-protest-outside-supreme-court.jpg?w=1200&f=1389678d0ff20bd2158c5106cbc804ed" target="_blank"><img src="https://d.newsweek.com/en/full/2564295/tiktok-content-creators-protest-outside-supreme-court.jpg?w=1200&f=1389678d0ff20bd2158c5106cbc804ed" alt="推文截图1"></a>
+            <a href="https://radii.co/wp-content/uploads/2025/01/New-Here-_-新来的_1_abainsane__来自小红书网页版.jpg" target="_blank"><img src="https://radii.co/wp-content/uploads/2025/01/New-Here-_-新来的_1_abainsane__来自小红书网页版.jpg" alt="推文截图2"></a>
+            <a href="https://gdb.voanews.com/5D6641FD-7CD4-41F0-9F28-53EBB4CB0760.jpg" target="_blank"><img src="https://gdb.voanews.com/5D6641FD-7CD4-41F0-9F28-53EBB4CB0760.jpg" alt="推文截图3"></a>
+            <a href="https://i.insider.com/6786befbe294a7514e8d165c?width=700" target="_blank"><img src="https://i.insider.com/6786befbe294a7514e8d165c?width=700" alt="推文截图3"></a>
+            <a href="https://d.newsweek.com/en/full/2564804/rednote.jpg" target="_blank"><img src="https://d.newsweek.com/en/full/2564804/rednote.jpg" alt="推文截图3"></a>
+
+            <a href="https://legendary-digital-network-assets.s3.amazonaws.com/wp-content/uploads/2025/01/15130756/Tiktok-rednote.jpg" target="_blank"><img src="https://legendary-digital-network-assets.s3.amazonaws.com/wp-content/uploads/2025/01/15130756/Tiktok-rednote.jpg" alt="推文截图3"></a>
+            <a href="https://beebom.com/wp-content/uploads/2025/01/what-is-rednote.jpg?w=1024" target="_blank"><img src="https://beebom.com/wp-content/uploads/2025/01/what-is-rednote.jpg?w=1024" alt="推文截图3"></a>
+            <a href="https://www.reuters.com/resizer/v2/FEWU6OJ2YZL4TFD7EORHJFJSUU.jpg?auth=4889a1c81fd4b86d8fb09171d30dd521044c4191626f4ababab5d6a07c28321d&width=1920&quality=80" target="_blank"><img src="https://www.reuters.com/resizer/v2/FEWU6OJ2YZL4TFD7EORHJFJSUU.jpg?auth=4889a1c81fd4b86d8fb09171d30dd521044c4191626f4ababab5d6a07c28321d&width=1920&quality=80" alt="推文截图3"></a>
+
+            <a href="https://www.economist.com/content-assets/images/20250201_WBD003.jpg" target="_blank"><img src="https://www.economist.com/content-assets/images/20250201_WBD003.jpg" alt="推文截图3"></a>
+
+            <a href="https://img-cdn.inc.com/image/upload/f_webp,q_auto,c_fit/vip/2025/01/deepseek-openai-ai-us-china-copy-inc-1210077175.jpg" target="_blank"><img src="https://img-cdn.inc.com/image/upload/f_webp,q_auto,c_fit/vip/2025/01/deepseek-openai-ai-us-china-copy-inc-1210077175.jpg" alt="推文截图3"></a>
+            <a href="https://www.cnet.com/a/img/resize/91907ae45c55d2392fc0cf1d7fc3234527ec51d3/hub/2025/01/27/ed3477d6-94ef-4f1d-a904-2820f2d0efce/deepseek-chatgpt-top-free-apps.png?auto=webp&fit=crop&height=675&width=1200" target="_blank"><img src="https://www.cnet.com/a/img/resize/91907ae45c55d2392fc0cf1d7fc3234527ec51d3/hub/2025/01/27/ed3477d6-94ef-4f1d-a904-2820f2d0efce/deepseek-chatgpt-top-free-apps.png?auto=webp&fit=crop&height=675&width=1200" alt="推文截图3"></a>
+            <a href="https://www.middleeasteye.net/sites/default/files/styles/max_2600x2600/public/images-story/tiktok-ban-us-chris-delmas-afp-18-january-2025.jpg.jpg?itok=-K_0ej5e" target="_blank"><img src="https://www.middleeasteye.net/sites/default/files/styles/max_2600x2600/public/images-story/tiktok-ban-us-chris-delmas-afp-18-january-2025.jpg.jpg?itok=-K_0ej5e" alt="推文截图3"></a>
+             <a href="https://www.orfonline.org/public/uploads/posts/image/65648380676b6.png" target="_blank"><img src="https://www.orfonline.org/public/uploads/posts/image/65648380676b6.png" alt="推文截图3"></a>
+
+            <a href="20250119_17373122699606.jpg" target="_blank"><img src="20250119_17373122699606.jpg" alt="推文截图3"></a> 
+     <a href="IMG_8284.PNG" target="_blank"><img src="IMG_8284.PNG" alt="推文截图3"></a>
+     <a href="IMG_8285.PNG" target="_blank"><img src="IMG_8285.PNG" alt="推文截图3"></a>
+     <a href="IMG_8286.jpg" target="_blank"><img src="IMG_8286.jpg" alt="推文截图3"></a>
+     <a href="46.jpg" target="_blank"><img src="46.jpg" alt="推文截图3"></a>
+     <a href="IMG_8491.PNG" target="_blank"><img src="IMG_8491.PNG" alt="推文截图3"></a>
+     <a href="IMG_8492.JPG" target="_blank"><img src="IMG_8492.JPG" alt="推文截图3"></a>
+     <a href="IMG_8493.JPG" target="_blank"><img src="IMG_8493.JPG" alt="推文截图3"></a>
+      <a href="nezha.png" target="_blank"><img src="nezha.png" alt="推文截图3"></a>
+       <a href="Mixue.jpg" target="_blank"><img src="Mixue.jpg" alt="推文截图3"></a>
+
+        </div></div>
+
+         <div class="content">
+            <h2>Recent News</h2>
+            <p>Click the title to view the full news article.</p>
+            <div class="book-item" onclick="window.open('https://www.phaidon.com/agenda/art/articles/2014/january/03/opening-warhols-time-capsules/')">Opening Warhol's time capsules</div>
+             <div class="book-item" onclick="window.open('https://www.csis.org/analysis/balancing-ledger-export-controls-us-chip-technology-china')">Balancing the Ledger: Export Controls on U.S. Chip Technology to China</div>
+            <div class="book-item" onclick="window.open('https://cn.nytimes.com/technology/20250121/tiktok-ban-rednote-xiaohongshu-adapts/', '_blank')">American 'TikTok Refugees' Become 'Permanent Residents': How Xiaohongshu Responds</div>
+            <div class="book-item" onclick="window.open('https://www.thepaper.cn/newsDetail_forward_13447571', '_blank')">In the era of digital media, the transformation and changes in nationalism.</div>
+            <div class="book-item" onclick="window.open('https://www.lifeweek.com.cn/article/240989', '_blank')">A historic celebration between Chinese and American netizens: How long can Xiaohongshu's massive traffic last?</div>
+             <div class="book-item" onclick="window.open('https://mashable.com/article/tiktok-ban-buyer', '_blank')">Every potential TikTok buyer we know about</div>
+              <div class="book-item" onclick="window.open('https://www.bbc.com/news/articles/c5yv5976z9po', '_blank')">DeepSeek: The Chinese AI app that has the world talking</div>
+               <div class="book-item" onclick="window.open('https://www.bbc.com/news/articles/c4g91kyjw07o', '_blank')">TikTok returns to Apple and Google app stores in the US</div>
+             <div class="book-item" onclick="window.open('https://www.reddit.com/r/movies/comments/1j2r7x7/ne_zha_2_surpasses_2billion_mark_becomes_first/?rdt=51720', '_blank')">'Ne Zha 2' Surpasses $2-Billion Mark, Becomes First Animated Film to Do So</div>
+             <div class="book-item" onclick="window.open('https://www.fastcompany.com/91289668/the-biggest-fast-food-chain-in-the-world-is-one-youve-never-heard-of', '_blank')">'The biggest fast-food chain in the world is one you’ve never heard of</div>
+               <div class="book-item" onclick="window.open('https://www.eatthis.com/mixue-surpasses-mcdonalds/', '_blank')">This Fast Food Chain Just Beat McDonald's as the Biggest in the World</div>
+
+
+
+        </div>
+        
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const timelineItems = document.querySelectorAll(".timeline-item");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            timelineItems.forEach(item => observer.observe(item));
+        });
+
+        function editContent(element) {
+            let newText = prompt("修改时间线内容:", element.innerText);
+            if (newText) {
+                element.innerText = newText;
+            }
+        }
+    </script>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var elem = document.querySelector('.gallery');
+        var msnry = new Masonry(elem, {
+            itemSelector: 'a',  // 选择 Masonry 布局的单元
+            columnWidth: 150,    // 每列宽度
+            gutter: 10,          // 间距
+            percentPosition: true // 让 Masonry 根据容器动态调整
+        });
+
+        // **关键：在图片加载完成后，触发 Masonry 重新布局**
+        var imgLoad = imagesLoaded(elem);
+        imgLoad.on('progress', function () {
+            msnry.layout();
+        });
+    });
+</script>
+
+<!-- 需要额外引入 imagesLoaded.js 来确保图片加载后 Masonry 重新布局 -->
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+</body>
+</html>

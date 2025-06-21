@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siqi Wang Thesis Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        .intro {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    color: #000000;
+    }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            text-align: center;
+        }
+         header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 50px 0;
+}
+
+/* 🌟 主按钮 - The New Art World */
+.button-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 380px;
+    height: 120px;
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    border-radius: 60px;
+    background: linear-gradient(45deg, #fe2d56, #fb5a79);
+    box-shadow: 0 0 20px rgba(254, 45, 86, 0.6);
+    position: relative;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+}
+
+/* 🌟 光晕 & Hover 效果 */
+.button-main:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px rgba(255, 90, 155, 1);
+}
+
+/* ✨ 副标题按钮 - Google Introduction Slide */
+.button-subtitle {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-weight: normal;
+    transition: color 0.3s ease-in-out;
+}
+
+/* ✨ 悬停时让 Subtitle 略微亮一些 */
+.button-subtitle:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+
+
+        .content {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #00f2ea;
+            text-align: left;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+.gallery {
+            margin-top: 20px;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #00f2ea;
+            text-align: left;
+        }
+
+        .gallery img {
+            width: 150px;
+            height: auto;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        .book-item {
+            color: #000000;
+            padding: 10px;
+            margin: 10px 0;
+            background: #22f7e9;
+            border-left: 5px solid #000000;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .book-item:hover {
+            background: #ffebf0;
+        }
+
+
+        .timeline {
+    position: relative;
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 15px 30px;
+    background: #ff7688;;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-in-out;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0 5px 15px rgba(255, 118, 136, 0.2);
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+    transform: translateX(-20px);
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    transform: translateX(20px);
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease-in-out;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: 0;
+}
+
+.timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.timeline-content h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.timeline-content p {
+    font-size: 1rem;
+    margin: 0;
+    opacity: 1;
+}
+
+.timeline-item.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.timeline-item:hover {
+    background: rgba(255, 118, 136, 1);
+    transform: scale(1.05);
+}
+
+/* 适配小屏幕 */
+@media screen and (max-width: 768px) {
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        left: 0 !important;
+        text-align: left;
+        padding-left: 50px;
+    }
+
+    .timeline-dot {
+        left: 20px !important;
+    }
+}
+
+    /* 🌟 让标签容器更具设计感 */
+.popular-tags {
+    background: rgba(30, 30, 30, 0.85); /* 玻璃质感背景 */
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    max-width: 800px;
+    margin: 40px auto;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 🎨 标题美化 */
+.popular-tags h2 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+/* 🔹 增加标题下的分割线 */
+.popular-tags h2::after {
+    content: "";
+    display: block;
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, #22f7e9, #12c8b7);
+    margin: 8px auto 0;
+    border-radius: 3px;
+}
+
+/* 📌 标签列表排版优化 */
+.tag-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* 🎨 让标签更立体 */
+.tag {
+    background: linear-gradient(135deg, #22f7e9, #12c8b7);
+    color: #000;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(34, 247, 233, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    min-width: 120px;
+}
+
+/* 🌀 交互动画 - Hover 立体效果 */
+.tag:hover {
+    transform: translateY(-3px) scale(1.1);
+    background: linear-gradient(135deg, #12c8b7, #0aaea1);
+    box-shadow: 0 6px 15px rgba(34, 247, 233, 0.5);
+}
+
+/* 🚀 让标签有流畅的入场动画 */
+.tag {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInTag 0.6s ease-out forwards;
+}
+
+/* 让标签逐个弹出 */
+@keyframes fadeInTag {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 🌈 让不同的标签延迟出现，增强动态感 */
+.tag:nth-child(1) { animation-delay: 0.1s; }
+.tag:nth-child(2) { animation-delay: 0.2s; }
+.tag:nth-child(3) { animation-delay: 0.3s; }
+.tag:nth-child(4) { animation-delay: 0.4s; }
+.tag:nth-child(5) { animation-delay: 0.5s; }
+.tag:nth-child(6) { animation-delay: 0.6s; }
+.tag:nth-child(7) { animation-delay: 0.7s; }
+.tag:nth-child(8) { animation-delay: 0.8s; }
+
+/* 📱 适配小屏幕 */
+@media screen and (max-width: 600px) {
+    .tag-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tag {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .popular-tags {
+        padding: 20px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        </header>
+        <section class="hero">
+            <h2>Post-Globalization and Digital Spaces</h2>
+            <p>Siqi Wang Thesis Project</p>
+        </section></header>
+    
+   <div class="container">
+    <div class="button-container">
+        <a href="https://www.notion.so/Thesis-Writing-Spring-2025-160a0e7b21fd80858fb5dfcc673042bc" 
+           class="button-main" 
+           target="_blank">The New Art World</a>
+
+        <a href="https://Ifthen.studio" 
+           class="button-subtitle" 
+           target="_blank">Google Introduction Slide</a>
+    </div>
+</div>
+
+</div>
+
+        
+        <div class="content">
+            <h2>Research Background </h2>
+            <p>This research examines the implicit power imbalances in cross-cultural communication, particularly the interactions between Western and Chinese cultures in a globalized context. Using overseas Chinese communities as a focal point, it investigates how cultural communication platforms (e.g., REDnote and TikTok) reveal racial privilege, linguistic power, and identity dynamics. By analyzing user behavior and interactions across diverse cultural backgrounds, the study explores how design can act as a tool to balance privilege, promote understanding, and encourage inclusivity.</p>
+        </div>
+
+       
+          <div class="popular-tags">
+    <h2>Popular Tags</h2>
+    <div class="tag-list">
+        <span class="tag">#cat tax</span>
+        <span class="tag">#tiktokrefugee</span>
+        <span class="tag">#TikTok ban</span>
+        <span class="tag">#foreigners flooding in</span>
+        <span class="tag">#foreigners in China</span>
+        <span class="tag">#cultural differences</span>
+        <span class="tag">#interesting foreigners</span>
+        <span class="tag">#life abroad</span>
+        <span class="tag">#Deepseek</span>
+    </div>
+</div>
+
+
+
+
+        <div class="content">
+            <h2> Timeline Regarding </h2>
+            <div class="timeline">
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 10, 2025</h3>
+            <p>DeepSeek officially released its large language model</p>
+        </div>
+    </div>
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 10, 2025</h3>
+            <p>The U.S. Supreme Court ruled that TikTok would be banned in the U.S</p>
+        </div>
+    </div>
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 14, 2025</h3>
+            <p>As TikTok faced a potential ban, Xiaohongshu (RedNote) surged to the top of both the Apple App Store and Google Play Store in the U.S</p>
+        </div>
+    </div>
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 16, 2025</h3>
+            <p>The hashtag #TikTokRefugee had already garnered over 78 million views and 2 million discussions on Xiaohongshu</p>
+        </div>
+    </div>
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 19, 2025</h3>
+            <p>TikTok was officially banned in the U.S. unless ByteDance completed a sale of its American operations</p>
+        </div>
+    </div>
+
+    <div class="timeline-item" onclick="editContent(this)">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+            <h3>January 27, 2025</h3>
+            <p>DeepSeek became the most downloaded app on Apple's U.S. App Store by January 27</p>
+        </div>
+    </div>
+</div>
+
+        </div>
+
+        <div class="content">
+            <h2>Gallery</h2>
+            <p>Click the image to view the full tweet screenshot.</p>
+            <a href="https://d.newsweek.com/en/full/2564295/tiktok-content-creators-protest-outside-supreme-court.jpg?w=1200&f=1389678d0ff20bd2158c5106cbc804ed" target="_blank"><img src="https://d.newsweek.com/en/full/2564295/tiktok-content-creators-protest-outside-supreme-court.jpg?w=1200&f=1389678d0ff20bd2158c5106cbc804ed" alt="推文截图1"></a>
+            <a href="https://radii.co/wp-content/uploads/2025/01/New-Here-_-新来的_1_abainsane__来自小红书网页版.jpg" target="_blank"><img src="https://example.com/tweet2.jpg" alt="推文截图2"></a>
+            <a href="https://example.com/tweet3" target="_blank"><img src="https://example.com/tweet3.jpg" alt="推文截图3"></a>
+        </div>
+
+        
+     <div class="content">
+            <h2>Interesting News</h2>
+            <p>Click the title to view the full news article.</p>
+            <div class="book-item" onclick="window.open('https://cn.nytimes.com/technology/20250121/tiktok-ban-rednote-xiaohongshu-adapts/', '_blank')">"American 'TikTok Refugees' Become 'Permanent Residents': How Xiaohongshu Responds</div>
+            <div class="book-item" onclick="window.open('https://www.thepaper.cn/newsDetail_forward_13447571', '_blank')">In the era of digital media, the transformation and changes in nationalism.</div>
+            <div class="book-item" onclick="window.open('https://www.lifeweek.com.cn/article/240989', '_blank')">A historic celebration between Chinese and American netizens: How long can Xiaohongshu's massive traffic last?</div></div>
+        
+        
+      
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const timelineItems = document.querySelectorAll(".timeline-item");
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        },
+        { threshold: 0.3 }
+    );
+
+    timelineItems.forEach((item) => observer.observe(item));
+});
+
+function editContent(element) {
+    let newText = prompt("修改时间线内容:", element.innerText);
+    if (newText) {
+        element.querySelector(".timeline-content p").innerText = newText;
+    }
+}
+    </script>
+</body>
+</html>
