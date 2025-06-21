@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project2</title>
+    <style>
+       html,
+bby,
+man {
+  --font: "skolar-sans-latin", sans-serif;
+  --really-green: oklch(88.14% 0.203 158.82);
+  --green: oklch(78.59% 0.18 159.1);
+  --black: oklch(22.21% 0 0);
+  --gray: oklch(83.9% 0 0);
+  --speed: 1200ms;
+
+  height: 100%;
+  font-family: var(--font);
+  background-color: var(--black);
+  color: var(--gray);
+
+  & * {
+    font-family: inherit;
+  }
+}
+
+man {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  text-align: center;
+  gap: 88px;
+
+  & article {
+    display: grid;
+    gap: 52px;
+  }
+
+  & h1 {
+    color: var(--green);
+    font-size: 14vw;
+    font-weight: 900;
+  }
+
+  & h2 {
+    font-size: 4.5vw;
+    text-transform: uppercase;
+    letter-spacing: 0.025ch;
+  }
+}
+
+*[letter-animation="breath"] {
+  & > span {
+    display: inline-block;
+    white-space: break-spaces;
+  }
+
+  & > span {
+    animation: breath calc(var(--speed)) ease calc(var(--index) * 100 * 1ms)
+      infinite alternate;
+  }
+}
+
+section {
+  width: 100%;
+  display: grid;
+  place-content: center;
+  place-items: center;
+
+  & div {
+    width: 50vw;
+
+    & span {
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 0.025ch;
+      position: relative;
+      margin-block-end: 8px;
+    }
+
+    & span:first-of-type {
+      float: left;
+      left: -12px;
+    }
+
+    & span:last-of-type {
+      float: right;
+      right: -12px;
+    }
+  }
+
+  & input[type="range"] {
+    width: 100%;
+  }
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: var(--green);
+  height: 0.5rem;
+  border-radius: 12px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -12px;
+  background-color: oklch(22.21% 0 0);
+  border: 1px solid oklch(38% 0 0);
+  border-radius: 8px;
+  height: 2rem;
+  width: 1.25rem;
+}
+
+@keyframes breath {
+  from {
+    animation-timing-function: ease-out;
+  }
+  to {
+    transform: scale(1.25) translateY(-5px) perspective(1px);
+    text-shadow: 0 0 20px var(--really-green);
+    animation-timing-function: ease-in-out;
+  }
+}
+
+
+
+    </style>
+</head>
+
+   <man>
+  <article>
+    <h1 split-by="letter" letter-animation="breath">2024</h1>
+  </article>
+  <section>
+    <div>
+
+      <span>Party</span>
+      <span>Chill</span>
+      <input min="100" max="2400" type="range" />
+    </div>
+  </section>
+  
+<script>
+  const slider = document.querySelector('input[type="range"]');
+  const root = document.querySelector("article");
+
+  const span = (text, index) => {
+    const node = document.createElement("span");
+    node.textContent = text;
+    node.style.setProperty("--index", index);
+    return node;
+  };
+
+  const byLetter = (text) => [...text].map(span);
+  const byWord = (text) => text.split(" ").map(span);
+
+  const { matches: motionOK } = window.matchMedia("(prefers-reduced-motion: no-preference)");
+
+  if (motionOK) {
+    const splitTargets = document.querySelectorAll("[split-by]");
+
+    splitTargets.forEach((node) => {
+      const type = node.getAttribute("split-by");
+      let nodes = null;
+      if (type === "letter") nodes = byLetter(node.innerText);
+      else if (type === "word") nodes = byWord(node.innerText);
+      if (nodes) {
+        node.innerHTML = ""; // 清空原内容
+        nodes.forEach((n) => node.appendChild(n)); // 添加 span 包裹后的字
+      }
+    });
+  }
+
+  function onInput() {
+    const value = slider.value;
+    root.style.setProperty("--speed", `${value}ms`);
+  }
+
+  if (slider) {
+    slider.addEventListener("input", debounce(onInput, 10));
+  }
+
+  function debounce(func, wait) {
+    let timeoutId;
+    return function () {
+      const context = this;
+      const args = arguments;
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func.apply(context, args);
+      }, wait);
+    };
+  }
+</script>
+
+
+</html>
